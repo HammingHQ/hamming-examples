@@ -8,7 +8,7 @@ npm install
 
 Examples:
 
-1. RAG with single retrieval and single generation
+1. RAG with single retrieval and single generation. [Code](./src/singleRetrievalRag/).
 
 ```bash
 npm run singleRetrievalRag
