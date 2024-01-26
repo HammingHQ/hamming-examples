@@ -6,26 +6,28 @@
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "singleRetrievalRag": "npx tsx -r dotenv/config src/singleRetrievalRag/index.ts",
-    "reset-hard": "git clean -dfx && git reset --hard && npm i"
+    "createSampleDataset": "npx tsx src/createSampleDataset/index.ts",
+    "singleRetrievalRag": "npx tsx src/singleRetrievalRag/index.ts"
   },
   "engines": {
     "node": ">=10"
   },
   "dependencies": {
+    "envsafe": "^2.0.3",
     "hamming-sdk": "github:HammingHQ/evals-ts"
   },
   "devDependencies": {
     "@types/node": "^20.5.1",
     "@typescript-eslint/eslint-plugin": "6.18.1",
     "@typescript-eslint/parser": "6.18.1",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.1",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-functional": "6.0.0",
     "eslint-plugin-import": "2.29.1",
     "prettier": "^2.1.1",
+    "tsx": "^4.7.0",
     "typescript": "5.3.3"
   },
   "files": [
@@ -38,6 +40,6 @@
     "README.md"
   ],
   "prettier": {
-    "singleQuote": true
+    "singleQuote": false
   }
 }

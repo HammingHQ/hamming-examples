@@ -1,19 +1,35 @@
-import { Hamming, ScoreType } from 'hamming-sdk';
-import { qaDemoLookup } from './lookups';
+import dotenv from "dotenv";
+dotenv.config();
+
+import { envsafe, str } from "envsafe";
+import { Hamming, ScoreType } from "hamming-sdk";
+
+import { qaDemoLookup } from "./lookups";
+
+const env = envsafe({
+  HAMMING_API_KEY: str(),
+  SAMPLE_DATASET_ID: str(),
+});
 
 const hamming = new Hamming({
-  apiKey: process.env.HAMMING_API_KEY!,
+  apiKey: env.HAMMING_API_KEY,
 });
 
 const trace = hamming.tracing;
 
+async function simulateRetrievalLatency() {
+  await new Promise((resolve) =>
+    setTimeout(resolve, Math.random() * 1000 + 1000)
+  );
+}
+
 async function doRag(question: string) {
   let aiOutput: string;
   let contexts: any[] = [];
+
+  await simulateRetrievalLatency();
+
   if (question in qaDemoLookup) {
-    await new Promise((resolve) =>
-      setTimeout(resolve, Math.random() * 1000 + 1000)
-    );
     const entry = qaDemoLookup[question];
     aiOutput = entry.aiOutput;
     contexts = entry.contexts;
@@ -27,34 +43,37 @@ async function doRag(question: string) {
 
 // This is a very simple RAG example with a single retrieval and single generation step
 async function scoreMyRag() {
-  // Run the experiment and log results
+  console.log("Running Single Retreival RAG..");
   await hamming.experiments.run(
     {
-      name: 'Name of your test',
-      dataset: '<YOUR DATASET ID>', //TODO: Replace with your dataset ID
-      scoring: [ScoreType.FactsCompare],
+      name: "Example experiment",
+      dataset: env.SAMPLE_DATASET_ID,
+      scoring: [ScoreType.AccuracyAI, ScoreType.FactsCompare],
       metadata: {
-        goal: 'Test if higher chunks are better',
+        goal: "Test if higher chunks are better",
         chunkSize: 10,
-        modelName: 'GPT-3.5 Turbo',
+        modelName: "GPT-3.5 Turbo",
       },
     },
-    async ({ question }) => {
-      console.log(`Query: ${question}`);
+    async ({ query }) => {
+      console.log(`Running query: ${query}`);
 
-      const { aiOutput, contexts } = await doRag(question);
+      const { aiOutput, contexts } = await doRag(query);
 
       trace.logRetrieval({
-        query: question,
+        query,
         results: contexts,
         metadata: {
-          engine: 'pinecone',
+          engine: "pinecone",
         },
       });
 
-      return { aiOutput };
+      return { response: aiOutput };
     }
   );
 }
 
-scoreMyRag();
+scoreMyRag().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
