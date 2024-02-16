@@ -132,3 +132,7 @@ dist
 .pnp.*
 
 .DS_Store
+
+venv/
+
+.env
