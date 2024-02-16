@@ -132,3 +132,10 @@ dist
 .pnp.*
 
 .DS_Store
+
+venv/
+
+.env
+
+# ignore pycache
+__pycache__/

@@ -43,7 +43,7 @@ async function doRag(question: string) {
 
 // This is a very simple RAG example with a single retrieval and single generation step
 async function scoreMyRag() {
-  console.log("Running Single Retreival RAG..");
+  console.log("Running Single Retrieval RAG..");
   await hamming.experiments.run(
     {
       name: "Example experiment",
@@ -52,7 +52,8 @@ async function scoreMyRag() {
       metadata: {
         goal: "Test if higher chunks are better",
         chunkSize: 10,
-        modelName: "GPT-3.5 Turbo",
+        modelName: "GPT-4 Turbo",
+        cutoffThreshold: 0.7,
       },
     },
     async ({ query }) => {
