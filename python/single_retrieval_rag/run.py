@@ -18,14 +18,14 @@ load_dotenv()
 
 
 HAMMING_API_KEY = os.getenv("HAMMING_API_KEY")
-DATASET_ID = os.getenv("DATASET_ID")
+DATASET_ID = os.getenv("SAMPLE_DATASET_ID")
 
 hamming = Hamming(ClientOptions(api_key=HAMMING_API_KEY))
 trace = hamming.tracing
 
 
 def run_experiment():
-    data = []
+    print('Running Single Retrieval RAG..')
 
     async def rag_pipeline(input):
         # Sleep a random amount of time to simulate a real API call
@@ -35,12 +35,13 @@ def run_experiment():
         # Lookup row with reference question
         if input["query"] in qa_demo_lookup:
             found_row = qa_demo_lookup[input["query"]]
-
-        if found_row is None:
+        else:
             return {"output": "Don't know"}
 
-        contexts = [Document(**d) for d in found_row.contexts]
+        print(f"Running query: {input["query"]}")
 
+        contexts = [Document(**d) for d in found_row['contexts']]
+        
         trace.log_retrieval(
             RetrievalParams(
                 query=input["query"],
@@ -72,3 +73,11 @@ def run_experiment():
         rag_pipeline,
     )
     print(f"See experiment results at: {result.url}")
+
+
+def main():
+    run_experiment()
+
+
+if __name__ == "__main__":
+    main()
