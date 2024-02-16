@@ -1,6 +1,4 @@
 import asyncio
-import csv
-import json
 import os
 import random
 from lookup import qa_demo_lookup
@@ -32,28 +30,20 @@ def run_experiment():
     async def rag_pipeline(input):
         # Sleep a random amount of time to simulate a real API call
         await asyncio.sleep(random.random())
+        found_row = None
+
         # Lookup row with reference question
-        # Lookup the query using the provided lookup.py context
-
-
         if input["query"] in qa_demo_lookup:
             found_row = qa_demo_lookup[input["query"]]
-        else:
-            found_row = None
 
-        found_row = None
-        for row in data:
-            if row["query"] == input["query"]:
-                found_row = row
-                break
         if found_row is None:
-            return {"response": "Don't know"}
+            return {"output": "Don't know"}
 
-        contexts = [Document(**d) for d in json.loads(found_row["context"])]
+        contexts = [Document(**d) for d in found_row.contexts]
 
         trace.log_retrieval(
             RetrievalParams(
-                query=input["referenceQuestion"],
+                query=input["query"],
                 results=contexts,
                 metadata=RetrievalParams.Metadata(engine="Pinecone"),
             )
@@ -61,13 +51,13 @@ def run_experiment():
 
         trace.log_generation(
             GenerationParams(
-                input=input["referenceQuestion"],
-                output=found_row["generatedAnswer"],
+                input=input["query"],
+                output=found_row["aiOutput"],
                 metadata=GenerationParams.Metadata(model="GPT-3"),
             )
         )
 
-        return {"output": found_row["generatedAnswer"]}
+        return {"output": found_row["aiOutput"]}
 
     result = hamming.experiments.run(
         RunOptions(
