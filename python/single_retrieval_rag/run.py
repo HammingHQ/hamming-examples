@@ -63,7 +63,7 @@ def run_experiment():
     result = hamming.experiments.run(
         RunOptions(
             dataset=DATASET_ID,
-            name="Test run python sdk async",
+            name="Hello world from Python SDK",
             scoring=[
                 ScoreType.FACTS_COMPARE,
                 ScoreType.ACCURACY_AI,

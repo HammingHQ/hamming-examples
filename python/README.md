@@ -30,7 +30,7 @@ HAMMING_API_KEY="<YOUR_API_KEY>"
 
 For this example, check out the [source code](./single_retrieval_rag/).
 
-1. Create a dataset using the _hamming_, and copy the _Dataset ID_ that was generated.
+1. Create a dataset using the _hamming_ SDK, and copy the _Dataset ID_ that was generated.
 
 ```bash
 $ python3 sample_dataset/create.py

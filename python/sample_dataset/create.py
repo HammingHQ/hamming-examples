@@ -14,8 +14,6 @@ from data import sample_data
 load_dotenv()
 
 HAMMING_API_KEY = os.getenv("HAMMING_API_KEY")
-DATASET_ID = os.getenv("DATASET_ID")
-
 hamming = Hamming(ClientOptions(api_key=HAMMING_API_KEY))
 
 def create_dataset():
