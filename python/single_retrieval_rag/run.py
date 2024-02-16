@@ -41,7 +41,7 @@ def run_experiment():
         print(f"Running query: {input["query"]}")
 
         contexts = [Document(**d) for d in found_row['contexts']]
-        
+
         trace.log_retrieval(
             RetrievalParams(
                 query=input["query"],
@@ -68,7 +68,12 @@ def run_experiment():
                 ScoreType.FACTS_COMPARE,
                 ScoreType.ACCURACY_AI,
             ],
-            metadata=None,
+            metadata={
+                "goal": "Test if higher chunks are better",
+                "chunkSize": 10,
+                "modelName": "GPT-4 Turbo",
+                "cutoffThreshold": 0.7,
+            },
         ),
         rag_pipeline,
     )
