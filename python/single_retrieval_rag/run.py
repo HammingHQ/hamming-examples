@@ -36,6 +36,7 @@ def run_experiment():
         if input["query"] in qa_demo_lookup:
             found_row = qa_demo_lookup[input["query"]]
         else:
+            print("Please verify that the SAMPLE_DATASET_ID in your .env file points to a valid dataset ID.")
             return {"output": "Don't know"}
 
         print(f"Running query: {input["query"]}")
