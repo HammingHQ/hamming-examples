@@ -59,6 +59,12 @@ async function scoreMyRag() {
     async ({ query }) => {
       console.log(`Running query: ${query}`);
 
+      if (!query) {
+        console.error(
+          "Please verify that the SAMPLE_DATASET_ID in your .env file points to a valid dataset ID."
+        );
+      }
+
       const { aiOutput, contexts } = await doRag(query);
 
       trace.logRetrieval({
