@@ -1,5 +1,9 @@
 # Installation and Running Examples
 
+## Node version
+
+We're using Node's native fetch API, which is included for all node versions >= 18.0. Type node -v to check your current node version. Our SDK only works for Node versions 18.0 and above.
+
 ## Install dependencies
 
 ```bash
