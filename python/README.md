@@ -1,5 +1,9 @@
 # Installation and Running Examples
 
+## Versions
+
+We support Python 3.8 and above. If you're using a version below this, let us know, and we'll modify the SDK to make it work for you.
+
 ## Create a venv (optional)
 
 ```bash
