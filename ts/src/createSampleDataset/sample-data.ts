@@ -1,4 +1,4 @@
-import { DatasetItemValue } from "hamming-sdk";
+import { DatasetItemValue } from "@hamming/hamming-sdk";
 
 
 const sampleData: DatasetItemValue[] = [
