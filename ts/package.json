@@ -13,9 +13,9 @@
     "node": ">=10"
   },
   "dependencies": {
+    "@hamming/hamming-sdk": "^1.0.2",
     "dotenv": "^16.4.1",
-    "envsafe": "^2.0.3",
-    "hamming-sdk": "github:HammingHQ/evals-ts"
+    "envsafe": "^2.0.3"
   },
   "devDependencies": {
     "@types/node": "^20.5.1",

@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { Hamming } from "hamming-sdk";
+import { Hamming } from "@hamming/hamming-sdk";
 
 import sampleData from "./sample-data";
 
@@ -22,6 +22,7 @@ async function createSampleDataset() {
   });
   console.log(`Created dataset with ${sampleData.length} items`);
   console.log("Dataset ID: " + dataset.id);
+  console.log("Dataset URL: " + "https://app.hamming.ai/datasets/" + dataset.id);
 }
 
 createSampleDataset().catch((e) => {

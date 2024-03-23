@@ -2,9 +2,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { envsafe, str } from "envsafe";
-import { Hamming, ScoreType } from "hamming-sdk";
+import { Hamming, ScoreType } from "@hamming/hamming-sdk";
 
 import { qaDemoLookup } from "./lookups";
+import { simulateLatency } from "../utils";
 
 const env = envsafe({
   HAMMING_API_KEY: str(),
@@ -17,17 +18,11 @@ const hamming = new Hamming({
 
 const trace = hamming.tracing;
 
-async function simulateRetrievalLatency() {
-  await new Promise((resolve) =>
-    setTimeout(resolve, Math.random() * 1000 + 1000)
-  );
-}
-
 async function doRag(question: string) {
   let aiOutput: string;
   let contexts: any[] = [];
 
-  await simulateRetrievalLatency();
+  await simulateLatency();
 
   if (question in qaDemoLookup) {
     const entry = qaDemoLookup[question];
@@ -41,7 +36,7 @@ async function doRag(question: string) {
   return { aiOutput, contexts };
 }
 
-// This is a very simple RAG example with a single retrieval and single generation step
+// Simple RAG example with a single retrieval and single generation step
 async function scoreMyRag() {
   console.log("Running Single Retrieval RAG..");
   await hamming.experiments.run(
@@ -52,7 +47,6 @@ async function scoreMyRag() {
       metadata: {
         goal: "Test if higher chunks are better",
         chunkSize: 10,
-        modelName: "GPT-4 Turbo",
         cutoffThreshold: 0.7,
       },
     },
@@ -72,6 +66,14 @@ async function scoreMyRag() {
         results: contexts,
         metadata: {
           engine: "pinecone",
+        },
+      });
+
+      trace.logGeneration({
+        input: query,
+        output: aiOutput,
+        metadata: {
+          model: "GPT-4 Turbo",
         },
       });
 
