@@ -36,6 +36,7 @@ def create_dataset():
         )
     )
     print(f"Created dataset with ID: {dataset.id}")
+    print(f"Dataset URL: https://app.hamming.ai/datasets/{dataset.id}")
 
 
 def main():
