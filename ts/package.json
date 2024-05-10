@@ -7,13 +7,14 @@
   "keywords": [],
   "scripts": {
     "createSampleDataset": "npx tsx src/createSampleDataset/index.ts",
-    "singleRetrievalRag": "npx tsx src/singleRetrievalRag/index.ts"
+    "singleRetrievalRag": "npx tsx src/singleRetrievalRag/index.ts",
+    "monitoring": "npx tsx src/monitoring/index.ts"
   },
   "engines": {
     "node": ">=10"
   },
   "dependencies": {
-    "@hamming/hamming-sdk": "^1.0.2",
+    "@hamming/hamming-sdk": "^1.0.8",
     "dotenv": "^16.4.1",
     "envsafe": "^2.0.3"
   },

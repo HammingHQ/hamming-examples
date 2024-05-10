@@ -12,7 +12,7 @@ $ npm install
 
 ## Setup your API Key
 
-Navigate to https://app.hamming.ai/settings to create an API Key, and add it to your *.env* file:
+Navigate to https://app.hamming.ai/settings to create an API Key, and add it to your _.env_ file:
 
 ```bash
 HAMMING_API_KEY="<YOUR_API_KEY>"
@@ -21,9 +21,11 @@ HAMMING_API_KEY="<YOUR_API_KEY>"
 ## Running Examples
 
 ### Example 1: RAG with single retrieval and single generation
+
 For this example, check out the [source code](./src/singleRetrievalRag/).
 
-1. Create a dataset using the *hamming-sdk*, and copy the *Dataset ID* that was generated.
+1. Create a dataset using the _hamming-sdk_, and copy the _Dataset ID_ that was generated.
+
 ```bash
 $ npm run createSampleDataset
 
@@ -32,15 +34,15 @@ Created dataset with 4 items
 Dataset ID: llrtx7eeg0010zb35e8czdrez
 ```
 
-2. Add the generated *Dataset ID* to your *.env* file:
+2. Add the generated _Dataset ID_ to your _.env_ file:
 
 ```bash
 HAMMING_API_KEY="<YOUR_API_KEY>"
 SAMPLE_DATASET_ID="<GENERATED_DATASET_ID>"
 ```
 
-
 3. Run the experiment
+
 ```
 $ npm run singleRetrievalRag
 
@@ -53,3 +55,9 @@ See experiment results at: https://app.hamming.ai/experiments/alrt8nl88001czb35b
 ```
 
 4. Navigate to the experiment link logged in the console to see results.
+
+## Monitoring
+
+```
+$ npm run monitoring
+```
