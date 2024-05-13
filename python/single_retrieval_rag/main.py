@@ -25,7 +25,7 @@ trace = hamming.tracing
 
 
 def run_experiment():
-    print('Running Single Retrieval RAG..')
+    print("Running Single Retrieval RAG..")
 
     async def rag_pipeline(input):
         # Sleep a random amount of time to simulate a real API call
@@ -36,12 +36,14 @@ def run_experiment():
         if input["query"] in qa_demo_lookup:
             found_row = qa_demo_lookup[input["query"]]
         else:
-            print("Please verify that the SAMPLE_DATASET_ID in your .env file points to a valid dataset ID.")
+            print(
+                "Please verify that the SAMPLE_DATASET_ID in your .env file points to a valid dataset ID."
+            )
             return {"output": "Don't know"}
 
-        print(f"Running query: {input["query"]}")
+        print(f"Running query: {input['query']}")
 
-        contexts = [Document(**d) for d in found_row['contexts']]
+        contexts = [Document(**d) for d in found_row["contexts"]]
 
         trace.log_retrieval(
             RetrievalParams(

@@ -2,7 +2,7 @@
 
 ## Versions
 
-We support Python 3.8 and above. If you're using a version below this, let us know, and we'll modify the SDK to make it work for you.
+We support Python 3.10.4 and above. If you're using a version below this, let us know, and we'll modify the SDK to make it work for you.
 
 ## Create a venv (optional)
 
@@ -37,7 +37,7 @@ For this example, check out the [source code](./single_retrieval_rag/).
 1. Create a dataset using the _hamming_ SDK, and copy the _Dataset ID_ that was generated.
 
 ```bash
-$ python3 sample_dataset/create.py
+$ python3 sample_dataset/main.py
 
 Creating dataset..
 Created dataset with ID: clsp14ww50759gtvf3lvyudbq
@@ -53,7 +53,7 @@ SAMPLE_DATASET_ID="<GENERATED_DATASET_ID>"
 3. Run the experiment
 
 ```
-$ python3 single_retrieval_rag/run.py
+$ python3 single_retrieval_rag/main.py
 
 Running Single Retrieval RAG..
 Running query: Where or how do I send in my booking confirmations?
