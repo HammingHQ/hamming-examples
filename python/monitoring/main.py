@@ -20,4 +20,7 @@ if __name__ == "__main__":
     print("Running with OpenAI Wrapper using async..")
     asyncio.run(run_oai_async())
 
+    print("Stopping monitoring..")
     ham.monitoring.stop()
+
+    print("Monitoring stopped. Visit https://app.hamming.ai/monitoring to see the traces.")
