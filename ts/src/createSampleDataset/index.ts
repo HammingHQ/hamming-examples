@@ -13,6 +13,7 @@ const hamming = new Hamming({
   apiKey: process.env.HAMMING_API_KEY,
 });
 
+//You can create a dataset programmatically
 async function createSampleDataset() {
   console.log("Creating a new sample dataset..");
   const dataset = await hamming.datasets.create({

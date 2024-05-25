@@ -27,6 +27,8 @@ async function run() {
   //logRetrieval is a function that logs the retrieval
   //logGeneration is a function that logs the generation
   const item = hamming.monitoring.startItem();
+
+  //This helps us display the question more cleanly on the monitoring page
   item.setInput({ question });
 
   const resp = await openai.chat.completions.create({
@@ -56,6 +58,7 @@ async function run() {
     },
   });
 
+  //This helps us display the final answer more cleanly on the monitoring page
   item.setOutput({ answer: finalAnswer });
   item.end();
 

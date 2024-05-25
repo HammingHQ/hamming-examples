@@ -23,6 +23,7 @@ async function run() {
   //logRetrieval is a function that logs the retrieval
   //logGeneration is a function that logs the generation
   const resp = await hamming.monitoring.runItem(async (item) => {
+    //This helps us display the question more cleanly on the monitoring page
     item.setInput({ question });
     // item.setMetadata({ category: "geography" }); //this is optional
 
@@ -62,6 +63,9 @@ async function run() {
         error: false,
       },
     });
+
+    //This helps us display the final answer more cleanly on the monitoring page
+    item.setOutput({ answer: "Paris" });
 
     return { answer: "Paris" };
   });
