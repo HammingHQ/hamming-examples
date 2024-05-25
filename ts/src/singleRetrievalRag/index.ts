@@ -74,7 +74,7 @@ async function scoreMyRag() {
   console.log("Running Single Retrieval RAG..");
   await hamming.experiments.run(
     {
-      name: "Example experiment",
+      name: "Example experiment from TS SDK",
       dataset: env.SAMPLE_DATASET_ID,
       scoring: [ScoreType.AccuracyAI, ScoreType.FactsCompare],
       metadata: {

@@ -30,6 +30,7 @@ async function run() {
 
   //This helps us display the question more cleanly on the monitoring page
   item.setInput({ question });
+  item.setMetadata({ sdk: "TypeScript" }); //this is optional
 
   const resp = await openai.chat.completions.create({
     stream: true,
