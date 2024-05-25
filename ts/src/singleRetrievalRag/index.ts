@@ -100,6 +100,7 @@ async function scoreMyRag() {
       const { llmOutput, contexts } = await doRag(query);
 
       //This makes it easier to view the documents that were retrieved in the experiment details page
+      //This also enables the ability to score precision, recall and hallucination
       trace.logRetrieval({
         query,
         results: contexts,
