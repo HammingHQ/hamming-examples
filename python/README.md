@@ -63,4 +63,10 @@ Running query: What are the main functions of the roots of a plant?
 See experiment results at: https://app.hamming.ai/experiments/alrt8nl88001czb35b4h2pe4r
 ```
 
+4. Run monitoring to log results
+
+```bash
+$ python3 monitoring/main.py
+```
+
 4. Navigate to the experiment link logged in the console to see results.

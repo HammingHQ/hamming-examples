@@ -61,3 +61,6 @@ See experiment results at: https://app.hamming.ai/experiments/alrt8nl88001czb35b
 ```
 $ npm run monitoring
 ```
+
+Visit the traces at: [https://app.hamming.ai/monitoring](https://app.hamming.ai/monitoring)
+

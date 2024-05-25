@@ -30,18 +30,26 @@ messages = [
 def run_oai():
     for _ in range(3):
         with ham.monitoring.start_item() as log_item:
+            # This helps us display the question more cleanly on the monitoring page
             log_item.set_input({"question": question})
+            log_item.set_metadata({"sdk": "Python"}) # Optional
+
             resp = wopenai_client.chat.completions.create(
                 model=model, messages=messages
             )
             output = resp.choices[0].message.content
+
+            # This helps us display the answer more cleanly on the monitoring page
             log_item.set_output({"answer": output})
 
 
 def run_oai_streaming():
     for _ in range(3):
         with ham.monitoring.start_item() as log_item:
+            # This helps us display the question more cleanly on the monitoring page
             log_item.set_input({"question": question})
+            log_item.set_metadata({"sdk": "Python"}) # Optional
+
             output = ""
             resp = wopenai_client.chat.completions.create(
                 stream=True,
@@ -51,15 +59,22 @@ def run_oai_streaming():
             for chunk in resp:
                 if chunk.choices[0].delta.content is not None:
                     output += chunk.choices[0].delta.content
+
+            # This helps us display the answer more cleanly on the monitoring page
             log_item.set_output({"answer": output})
 
 
 async def run_oai_async():
     for _ in range(3):
         with ham.monitoring.start_item() as log_item:
+            # This helps us display the question more cleanly on the monitoring page
             log_item.set_input({"question": question})
+            log_item.set_metadata({"sdk": "Python"}) # Optional
+
             resp = await awopenai_client.chat.completions.create(
                 model=model, messages=messages
             )
             output = resp.choices[0].message.content
+
+            # This helps us display the answer more cleanly on the monitoring page
             log_item.set_output({"answer": output})

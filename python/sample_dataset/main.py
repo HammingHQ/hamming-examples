@@ -16,6 +16,7 @@ load_dotenv()
 HAMMING_API_KEY = os.getenv("HAMMING_API_KEY")
 hamming = Hamming(ClientOptions(api_key=HAMMING_API_KEY))
 
+# This is a simple example of creating a dataset programmatically
 def create_dataset():
     print("Creating dataset..")
 
