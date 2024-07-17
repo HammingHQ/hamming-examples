@@ -20,7 +20,7 @@ def custom_correctness_score_reference_free(args: ScoreArgs) -> Score:
     output_answer = output["answer"]
 
     # Define your scoring logic here.
-    if 'delve' in output_answer:
+    if 'delve' in output_answer.lower():
         return Score(value=1, reason="The output answer uses 'delve'.")
     else:
         return Score(value=0, reason="The output answer does not use 'delve'.")
@@ -36,6 +36,10 @@ custom_scoring_classification_reference_free = ScoringFunction(
             0: "Incorrect",
             1: "Correct",
         },
+        colors={
+            0: LabelColor.RED,
+            1: LabelColor.GREEN,
+        },        
     ),
     scorer=LocalScorer(
         score_fn=custom_correctness_score_reference_free

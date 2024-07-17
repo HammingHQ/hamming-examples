@@ -12,7 +12,7 @@ from hamming import (
     Score
 )
 
-def custom_scoring_classification_multiple_outputs(args: ScoreArgs) -> Score:
+def custom_correctness_score_multiple_outputs(args: ScoreArgs) -> Score:
     output = args["output"]
     expected = args["expected"]
 
@@ -37,6 +37,10 @@ custom_scoring_classification_multiple_outputs = ScoringFunction(
         labels={
             0: "Incorrect",
             1: "Correct",
+        },
+        colors={
+            0: LabelColor.RED,
+            1: LabelColor.GREEN,
         },
     ),
     scorer=LocalScorer(
