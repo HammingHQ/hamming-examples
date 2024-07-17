@@ -11,7 +11,10 @@ from hamming import (
 from openai import OpenAI
 
 load_dotenv()
-
+from scorer import (
+    custom_scoring_classification, 
+    custom_scoring_numeric
+)
 
 HAMMING_API_KEY = os.getenv("HAMMING_API_KEY")
 HAMMING_DATASET_ID = os.getenv("SAMPLE_DATASET_ID")
@@ -21,19 +24,18 @@ hamming = Hamming(ClientOptions(api_key=HAMMING_API_KEY))
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
 trace = hamming.tracing
 
-
 def answer_question(input):
     question = input["question"]
-    conversation_history = input["conversation_history"]
+
     print(f"Question: {question}")
 
     response = openai_client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            *conversation_history,
             {"role": "user", "content": question},
         ],
     )
+
     answer = response.choices[0].message.content
 
     print(f"Answer: {answer}")
@@ -45,29 +47,29 @@ def answer_question(input):
             output=answer,
             metadata=GenerationParams.Metadata(model="gpt-3.5-turbo"),
         )
-    )    
+    )
 
     return {"answer": answer}
 
-
 def run():
-    print("Running a multi-turn evaluation experiment..")
-    
+    print("Running a custom scorer experiment..")
+
     result = hamming.experiments.run(
         RunOptions(
             dataset=HAMMING_DATASET_ID,
-            name="Multi-turn evaluation from Python SDK",
+            name="Custom Scorer Experiment - Python",
             scoring=[
-                ScoreType.ACCURACY_AI,
+                # Use your custom scorers here
+                custom_scoring_classification,
+                custom_scoring_numeric
             ],
             metadata={},
         ),
         answer_question,
     )
 
-    print("Multi-turn evaluation experiment completed.")
+    print("Custom scorer experiment completed.")
     print(f"See the results at: {result.url}")
-
 
 if __name__ == "__main__":
     run()

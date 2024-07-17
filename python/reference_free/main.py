@@ -11,7 +11,9 @@ from hamming import (
 from openai import OpenAI
 
 load_dotenv()
-
+from scorer import (
+    custom_scoring_classification_reference_free, 
+)
 
 HAMMING_API_KEY = os.getenv("HAMMING_API_KEY")
 HAMMING_DATASET_ID = os.getenv("SAMPLE_DATASET_ID")
@@ -21,16 +23,13 @@ hamming = Hamming(ClientOptions(api_key=HAMMING_API_KEY))
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
 trace = hamming.tracing
 
-
 def answer_question(input):
     question = input["question"]
-    conversation_history = input["conversation_history"]
     print(f"Question: {question}")
 
     response = openai_client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            *conversation_history,
             {"role": "user", "content": question},
         ],
     )
@@ -51,21 +50,22 @@ def answer_question(input):
 
 
 def run():
-    print("Running a multi-turn evaluation experiment..")
+    print("Running a reference-free evaluation experiment..")
     
     result = hamming.experiments.run(
         RunOptions(
             dataset=HAMMING_DATASET_ID,
-            name="Multi-turn evaluation from Python SDK",
+            name="Custom Scorer Experiment - Python (Reference-Free)",
             scoring=[
-                ScoreType.ACCURACY_AI,
+                # Use your custom scorers here
+                custom_scoring_classification_reference_free,
             ],
             metadata={},
         ),
         answer_question,
     )
 
-    print("Multi-turn evaluation experiment completed.")
+    print("Reference-free evaluation experiment completed.")
     print(f"See the results at: {result.url}")
 
 
