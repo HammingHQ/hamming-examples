@@ -9,13 +9,14 @@
     "createSampleDataset": "npx tsx src/createSampleDataset/index.ts",
     "singleRetrievalRag": "npx tsx src/singleRetrievalRag/index.ts",
     "monitoring": "npx tsx src/monitoring/index.ts",
-    "monitoringStreaming": "npx tsx src/monitoringStreaming/index.ts"
+    "monitoringStreaming": "npx tsx src/monitoringStreaming/index.ts",
+    "prompts": "npx tsx src/prompts/index.ts"
   },
   "engines": {
     "node": ">=10"
   },
   "dependencies": {
-    "@hamming/hamming-sdk": "^1.0.10",
+    "@hamming/hamming-sdk": "^1.0.21",
     "dotenv": "^16.4.1",
     "envsafe": "^2.0.3",
     "openai": "^4.47.1"
