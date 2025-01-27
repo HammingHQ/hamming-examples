@@ -30,8 +30,8 @@ async function sendCallRecording() {
     payload: {
       // Replace with your actual call ID
       call_id: "your-call-id",
-      // Replace with your actual recording URL from storage.vapi.ai
-      recording_url: "https://storage.vapi.ai/your-recording-id.wav",
+      // Example recording URL from Hamming documentation
+      recording_url: "https://storage.vapi.ai/2f465c6c-93d2-40f0-8ec9-dafdc23fb0d2-1732230739721-32d30dab-2b31-41d3-b6e3-64e8330c00e2-stereo.wav",
       // Replace with your actual phone numbers
       from_number: "+1234567890",
       to_number: "+1987654321",
