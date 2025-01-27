@@ -29,3 +29,8 @@ HAMMING_API_KEY="<YOUR_API_KEY>"
 ```
 
 ## Running Examples
+
+### Custom Voice Agent Monitoring
+1. Ensure you have `HAMMING_API_KEY` in your .env
+2. `pip install -r requirements.txt`
+3. `python3 voice_agent_monitoring/main.py`
