@@ -1,14 +1,30 @@
 #!/usr/bin/env python3
 import os
 import requests
+from datetime import datetime, timedelta
 
 HAMMING_API_KEY = os.getenv("HAMMING_API_KEY", "")
 if not HAMMING_API_KEY:
     raise ValueError("Missing HAMMING_API_KEY in environment")
 
+def get_timestamps():
+    """Generate start and end timestamps in milliseconds for a call that just ended."""
+    end_time = datetime.now()
+    # Simulate a 5-minute call
+    start_time = end_time - timedelta(minutes=5)
+    
+    # Convert to milliseconds since epoch
+    end_timestamp = int(end_time.timestamp() * 1000)
+    start_timestamp = int(start_time.timestamp() * 1000)
+    
+    return start_timestamp, end_timestamp
+
 def send_call_recording():
     url = "https://app.hamming.ai/api/rest/v2/call-logs"
     headers = {"Authorization": f"Bearer {HAMMING_API_KEY}", "Content-Type": "application/json"}
+    
+    start_timestamp, end_timestamp = get_timestamps()
+    
     payload = {
         "provider": "custom",
         "metadata": {"agent": "My Python Voice Agent"},
@@ -17,8 +33,8 @@ def send_call_recording():
             "recording_url": "https://example.com/recordings/call_python_12345.wav",
             "from_number": "+14255551234",
             "to_number": "+18335557890",
-            "start_timestamp": 1683330954000,
-            "end_timestamp": 1683331234000,
+            "start_timestamp": start_timestamp,
+            "end_timestamp": end_timestamp,
             "status": "ended"
         }
     }
