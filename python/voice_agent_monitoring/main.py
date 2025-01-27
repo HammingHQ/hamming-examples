@@ -29,10 +29,13 @@ def send_call_recording():
         "provider": "custom",
         "metadata": {"agent": "My Python Voice Agent"},
         "payload": {
-            "call_id": "call_python_12345",
-            "recording_url": "https://example.com/recordings/call_python_12345.wav",
-            "from_number": "+14255551234",
-            "to_number": "+18335557890",
+            # Replace with your actual call ID
+            "call_id": "your-call-id",
+            # Replace with your actual recording URL from storage.vapi.ai
+            "recording_url": "https://storage.vapi.ai/your-recording-id.wav",
+            # Replace with your actual phone numbers
+            "from_number": "+1234567890",
+            "to_number": "+1987654321",
             "start_timestamp": start_timestamp,
             "end_timestamp": end_timestamp,
             "status": "ended"
