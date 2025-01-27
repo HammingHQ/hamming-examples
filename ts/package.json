@@ -6,11 +6,10 @@
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "createSampleDataset": "npx tsx src/createSampleDataset/index.ts",
-    "singleRetrievalRag": "npx tsx src/singleRetrievalRag/index.ts",
     "monitoring": "npx tsx src/monitoring/index.ts",
     "monitoringStreaming": "npx tsx src/monitoringStreaming/index.ts",
-    "prompts": "npx tsx src/prompts/index.ts"
+    "prompts": "npx tsx src/prompts/index.ts",
+    "voiceAgentMonitoring": "npx tsx src/voiceAgentMonitoring/index.ts"
   },
   "engines": {
     "node": ">=10"

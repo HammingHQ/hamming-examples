@@ -20,6 +20,10 @@ HAMMING_API_KEY="<YOUR_API_KEY>"
 
 ## Running Examples
 
+### Custom Voice Agent Monitoring
+1. Ensure you have `HAMMING_API_KEY` in your .env
+2. `npm install`
+3. `npm run voiceAgentMonitoring`
 
 
 ## Monitoring
